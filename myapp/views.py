@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from .models import UserInput, GPTResponse
 import openai
+from decouple import config
 
 # Use environment variable for the API key
-openai.api_key = "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"
+openai.api_key = config('OPENAI_API_KEY')
+
 def home(request):
     if request.method == 'POST':
         user_input_text = request.POST.get('user_input', '').strip()
